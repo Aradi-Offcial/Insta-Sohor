@@ -25,6 +25,7 @@ const reportPost = (id) => {
 	const remainingPosts = posts.filter(
 		(post) => !reportedPostsId.includes(post.id)
 	);
+	remainingPosts.innerHTML = "";
 	showPosts(remainingPosts);
 };
 
@@ -40,6 +41,7 @@ const switchTab = (id) => {
 		document.getElementById("posts").style.display = "grid";
 		document.getElementById("liked").style.display = "none";
 		document.getElementById("reported").style.display = "none";
+		document.getElementById("reported").style.display.textContent = 0;
 	} else if (id === "liked") {
 		document.getElementById("liked").style.display = "block";
 		document.getElementById("posts").style.display = "none";
@@ -165,7 +167,8 @@ const displayLikedPosts = () => {
 };
 
 const displayReportedPosts = () => {
-	const reportedPosts = getReportedPosts();
+	document.getElementById("reported").innerHTML = "";
+	const posts = getReportedPosts();
 	posts.forEach((post) => {
 		const div = createPost(post);
 		document.getElementById("reported").appendChild(div);
