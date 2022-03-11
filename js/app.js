@@ -16,7 +16,7 @@ const isLiked = (id) => {
 };
 
 const addToLiked = (id) => {
-	likedPostsId.plus(id);
+	likedPostsId.push(id);
 	showPosts(posts);
 };
 
@@ -49,7 +49,7 @@ const switchTab = (id) => {
 	} else {
 		document.getElementById("reported").style.display = "block";
 		document.getElementById("posts").style.display = "none";
-		document.getElementById("liked").style.display = "none";
+		document.getElementById("liked").style.display = "block";
 
 		displayReportedPosts();
 	}
@@ -59,7 +59,6 @@ const createPost = (post) => {
 	const image = post.image;
 	const div = document.createElement("article");
 	div.classList.add("post");
-	console.log(div);
 
 	// user profile pic chaged
 	div.innerHTML = `
@@ -176,7 +175,6 @@ const displayReportedPosts = () => {
 const loadPosts = async () => {
 	let data = await fetch("../data/posts.json");
 	posts = await data.json();
-	console.log(posts);
 
 	showPosts(posts);
 };
